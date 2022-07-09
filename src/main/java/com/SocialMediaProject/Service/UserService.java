@@ -22,12 +22,20 @@ public class UserService {
 		return userDetail;
 		
 	}
-	public boolean checkUser(String userName) {
+	public boolean checkUser(String userName, String userPassword) {
 		Users userDetail = userRepo.findByUserName(userName);
 		if(userDetail != null) {
-			return true;
+			if(userDetail.getUserPassword().equals(userPassword)) {
+				System.out.println("Verified");
+				return true;
+			}
+			else {
+				System.out.println("Not Verified");
+				return false;
+			}
 		}
 		else {
+			System.out.println("null");
 			return false;
 		}
 	}
